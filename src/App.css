@@ -1,0 +1,537 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Roboto:wght@300&family=Sen&display=swap');
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body{
+  font-family: 'Sen',sans-serif;
+}
+.btn-auth:hover{
+  border: 1px solid #BD0707;
+  background-color: transparent;
+}
+.btnLoginApp:hover{
+  background-color: transparent;
+  color: #BD0707;
+  border: 1px solid #BD0707;
+}
+.btnLoginApp{
+  font-family: 'Sen', sans-serif;
+  border: 1px solid #BD0707;
+  background-color: #BD0707;
+}
+.btnRegisterApp:hover{
+  background-color: transparent;
+  color: #BD0707;
+  border: 1px solid #BD0707;
+}
+.btnRegisterApp{
+  font-family: 'Sen', sans-serif;
+  border: 1px solid #BD0707;
+  background-color: #BD0707;
+}
+.btnRegister:hover{
+  background-color: transparent;
+  color: #BD0707;}
+.btnRegister{
+    width: 125px;
+  }
+.btnLogin{
+  width: 125px;
+  margin-left: 35%;
+}
+.detailProduct{
+  width:100%;
+   margin:50px auto;
+   display: flex;
+}
+.detailProduct img{
+  margin-left: 10%;
+}
+.detailProduct .titleDetail{
+  color: #BD0707;
+  font-weight: bold;
+  font-size: 45px;
+  font-family: 'Sen', sans-serif;
+}
+
+.detailProduct .priceDetail{
+  color: #BD0707;
+  margin-top: 10px;
+  font-weight: bold;
+  margin-left: 0px;
+  font-size: 23px;
+}
+.detailProduct .descriptProduct{
+
+  width: 100%;
+}
+.detailProduct .variantTitle{
+  font-weight: bold;
+  font-size: 21px;
+  color: #BD0707;
+}
+.detailProduct .variantDetail{
+  margin-top: 30px;
+  width: 100%;
+  color: #BD0707;
+}
+.variant{
+  text-align: center;
+  width: 30%;
+  margin-right: 20px;
+  height: 30%;
+  
+}
+.variant p{
+  margin-top: 5px;
+  width: 100%;
+  font-size: 14px;
+}
+.listVariant{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 20px;
+}
+.detailProduct .quantity{
+  font-size: 25px;
+  margin-top: 20px;
+  display: flex;
+  font-weight: bold;
+}
+.detailProduct .quantity .quantityPrice{
+  margin-left: 63%;
+  margin-bottom: 20px;
+}
+
+
+.color-red {
+  color: var(--red-main);
+}
+
+.bg-red {
+  background: var(--red-main);
+}
+
+.btn-navbar {
+  padding: 10px 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.btn-form {
+  padding: 13px 0;
+
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.btn-white {
+  outline: var(--red-main);
+}
+
+.btn-white:hover {
+  background: var(--red-main);
+}
+
+.btn-main {
+  background: var(--red-main);
+}
+.btn-product{
+  font-weight: bold;
+}
+.btn-main:hover {
+  background: var(--white);
+  color: var(--red-main);
+  outline: var(--red-main);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn-user {
+  padding: 7px 5px;
+  background: none;
+  outline: none;
+  border: none;
+}
+.btn-user{
+  padding: 7px 5px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.badge-position {
+  right: -5px;
+}
+
+.icon-size {
+  width: 40px;
+  align-self: center;
+  justify-self: center;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.product-content {
+  height: 550px;
+
+  width: 400px;
+}
+
+.image-product {
+  object-fit: cover;
+
+  height: 100%;
+  width: 100%;
+}
+
+.productlist-image {
+  width: 100%;
+  height: 300px;
+}
+.product-content {
+  height: 400px;
+  width: 400px;
+}
+
+.image-product {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.productlist-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.toppinglist-image {
+  width: 30px;
+  height: 130px;
+  object-fit: cover;
+}
+.fs-7 {
+  font-size: 12px;
+}
+
+.toppinglist-card {
+  border: none;
+  cursor: pointer;
+  width: 130px;
+}
+img.card-img.checked {
+  width: 30px;
+  right: 10px;
+}
+
+.checked {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  width: 20px;
+}
+.card-title{
+  text-align: center;
+  font-size: 17px;
+  width: 170px;
+  font-weight: bold;
+}
+
+  .cursor-pointer img {
+    width: 100px;
+}
+.detailProduct .addCart{
+  width: 92%;
+  background-color: #BD0707;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  font-weight: 700;
+  border: 1px solid #BD0707 ;
+}
+.detailProduct .addCart:hover{
+  background-color: white;
+  color: #BD0707;
+  font-weight: 700;
+}
+.lineOr{
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+}
+.lineOr .line{
+  width: 30%;
+  margin-top: -4px;
+}
+.profile{
+  width: 80%;
+  margin:50px auto;
+}
+.userProfile{
+  width: 50%;
+}
+.userProfile img{
+  margin-top: 20px;
+  width: 180px;
+  border-radius: 4px;
+height: 221px;
+}
+.historyTransaction{
+  width: 50%;
+}
+.profile h3{
+  color: #BD0707;
+  font-weight: bold;
+}
+.profile h5{
+  font-weight: bold;
+  color: #613D2B;
+}
+.profile .self{
+  margin-left: 30px;
+  margin-top: 20px;
+}
+.detailTransaction{
+  background-color: #F6DADA;
+  margin-top:10px;
+  width: 524px;
+  height: 242px;
+  border-radius: 5px;
+  padding: 15px;
+}
+.historyTransaction .detailPrice h5, .historyTransaction .detailPrice p{
+  color: #BD0707;
+}
+.itemTransaction{
+  font-size: 10px;
+}
+.itemTransaction img{
+  width: 80px;
+  margin-right: 15px;
+  height: 97px;
+}
+.logoBrand{
+  width: 55px;
+
+}
+.brandTransaction {
+  margin-left: -20px;
+  text-align: center;
+}
+.brandTransaction .statusTransaction{
+  background-color: #00d0ff27;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #00D1FF;
+  font-weight: bold;
+}
+.layoutProduct{
+  width: 75%;
+}
+.subTotal{
+  font-size: 13px;
+  font-weight: bold;
+}
+.navBar{
+  top: 0;
+  position: fixed;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+}
+.cardHome{
+  margin-top: 80px;
+}
+.hereBtn{
+  color: black;
+  text-decoration: none;
+
+}
+.Cart{
+  width: 80%;
+  margin: 100px auto;
+  color: #BD0707
+}
+.detailCart h2{
+  font-weight: bold;
+}
+.detailCart{
+  width: 60%;
+}
+.detailCart h2{
+  margin-bottom: 30px;
+  font-weight: 900;
+}
+.detailCart .lineCart{
+  border: 1px solid #BD0707;
+}
+.inputCart{
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 25%;
+  height: 50px;
+  
+  background: rgba(224, 200, 200, 0.25);
+  border: 2px solid #BD0707;
+  border-radius: 5px;
+}
+.inputCart1{
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 25%;
+  margin-top: 6%;
+  height: 53px;
+  
+  background: rgba(224, 200, 200, 0.25);
+  border: 2px solid #BD0707;
+  border-radius: 5px;
+}
+.inputCart2{
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 25%;
+  margin-top: 12%;
+  height: 53px;
+  
+  background: rgba(224, 200, 200, 0.25);
+  border: 2px solid #BD0707;
+  border-radius: 5px;
+}
+.inputCart3{
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 25%;
+  margin-top: 18%;
+  height: 53px;
+  
+  background: rgba(224, 200, 200, 0.25);
+  border: 2px solid #BD0707;
+  border-radius: 5px;
+}
+.inputCart4{
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 25%;
+  margin-top: 24%;
+  height: 115px;
+  
+  background: rgba(224, 200, 200, 0.25);
+  border: 2px solid #BD0707;
+  border-radius: 5px;
+}
+
+.formCart{
+  margin-left: 10%;
+  margin-top: 90px;
+}
+
+.detailCart .cartProduk{
+  width: 100px;
+  height: 110px;
+  border-radius: 5px;
+}
+.detailCart .lineSubtotal{
+  border: 1px solid #BD0707;
+  width: 60%;
+}
+.attachTransaction{
+  box-sizing: border-box;
+
+position: absolute;
+width: 216px;
+height: 122px;
+left: 655px;
+top: 555px;
+text-align: center;
+padding: 15px;
+
+background: rgba(224, 200, 200, 0.25);
+border: 2px solid #BD0707;
+border-radius: 5px;
+}
+
+.attachTransaction p{
+  font-weight: 500;
+  margin-top: 10px;
+  color: rgba(104, 50, 50, 0.5);
+
+}
+.paySubmit{
+  position: absolute;
+width: 25%;
+height: 40px;
+left: 990px;
+top: 720px;
+
+background: #BD0707;
+border-radius: 5px;  
+border:1px solid #BD0707;
+}
+.paySubmit:hover{
+  background-color: transparent;
+  color: #BD0707;
+  border: 1px solid #BD0707;
+}
+.hr-cart {
+  border: 1px solid var(--red-main);
+}
+
+.cartlist-image {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+}
+
+.delete-cart {
+  font-size: 12px;
+}
