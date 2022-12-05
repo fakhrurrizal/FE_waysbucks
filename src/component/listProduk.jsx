@@ -32,7 +32,7 @@ export default function Produk({ getLogin }){
                 {products?.map((data, index) => (
                     <Col  xs="4" className="mt-5" style={{ width:"19rem", height:"auto" }}>
                     <Card 
-                        // onClick={() => state.isLogin === false ? setShowLogin(true) : toDetail(data?.id)}
+
                         onClick={() => state.isLogin === false ? setShowLogin(true) : toDetail(data?.id)}
                         key={index}
 

@@ -10,27 +10,27 @@ import qode from '../../assets/image/QrCode.png';
 
 
 export default function Profile(){
-    const localData = localStorage.getItem("DATA_USER");
-    const data = JSON.parse(localData);
-    let getLogin = data;
+  //   const localData = localStorage.getItem("DATA_USER");
+  //   const data = JSON.parse(localData);
+  //   let getLogin = data;
 
-    const user = [];
-  const getUser = () => {
-    if (typeof Storage === "undefined") {
-      alert("cant store user");
-    }
+  //   const user = [];
+  // const getUser = () => {
+  //   if (typeof Storage === "undefined") {
+  //     alert("cant store user");
+  //   }
 
-    const localData = localStorage.getItem("LOGIN_STATUS");
-    let data = JSON.parse(localData);
+  //   const localData = localStorage.getItem("LOGIN_STATUS");
+  //   let data = JSON.parse(localData);
 
-    if (data !== null) {
-      for (let i = 0; i < data.length; i++) {
-        user.push(data[i]);
-      }
-    }
-  };
+  //   if (data !== null) {
+  //     for (let i = 0; i < data.length; i++) {
+  //       user.push(data[i]);
+  //     }
+  //   }
+  // };
 
-  getUser();
+  // getUser();
     return(
         <>  
             <Container>
@@ -44,11 +44,11 @@ export default function Profile(){
                             <div className='self'>
                                 <div>
                                     <h5>Full Name</h5>
-                                    <p>{user[0].name}</p>
+                                    <p>Muhammad Fakhrur Rizal</p>
                                 </div>
                                 <div>
                                     <h5>Email</h5>
-                                    <p>{user[0].email}</p>
+                                    <p>mail@mail.com</p>
                                 </div>
                             </div>
 

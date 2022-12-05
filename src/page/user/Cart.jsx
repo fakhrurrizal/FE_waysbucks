@@ -12,60 +12,13 @@ import DeleteData from "../../component/modal/DeleteData";
 
 function CartUserPage() {
 
-  const [idDelete, setIdDelete] = useState(null)
-  const [confirmDelete, setConfirmDelete] = useState(null)
-
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const [showLogin, setShowLogin] = useState(true)
-  const [showRegister, setShowRegister] = useState(false)
-
-
   const [state] = useContext(UserContext)
-  const navigate = useNavigate();
-  
-  const { data: order, refetch } = useQuery("orderCache", async () => {
-    const config = {
-      method: "GET",
-      headers: {
-        Authorization: "Basic " + localStorage.token,
-      },
-    }
-    const res = await API.get("/orders", config);
-    return res.data.data;
-  });
 
-  const formatIDR = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: "IDR",
-    maximumFractionDigits: 0,
+  let { data: order, refetch } = useQuery("ordersCache", async () => {
+    const response = await API.get("/orders-id")
+    return response.data.data
   })
-
-  console.log("data order", order)
-  const pay = []
-  const [DataPay, setDataPay] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    postcode: "",
-    address: "",
-  })
-
-  
-  const addDataPay = JSON.parse(localStorage.getItem("DATA_PAY"))
-  const handleOnChange = (e) => {
-    setDataPay({
-      ...DataPay,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleDelete = (id) => {
-    setIdDelete(id)
-    handleShow()
-  }
+  console.log("data order: ", order)
 
   let Subtotal = 0
   let Qty = 0
@@ -80,40 +33,138 @@ function CartUserPage() {
     )
   }
 
+  //Payment
+  const [DataPay, setState] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    postcode: "",
+    address: "",
+  })
+
+  // const { name, address } = form
+
+  const handleOnChange = (e) => {
+    setState({
+      ...DataPay,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  let navigate = useNavigate()
+
+  const HandlePay = useMutation(async (e) => {
+    try {
+      e.preventDefault()
+
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+      const requestBody = JSON.stringify(DataPay)
+      const response = await API.patch(
+        "/updatetrans/" + IDTrans,
+        requestBody,
+        config
+       
+      )
+      navigate("/profile");
+      console.log("Transaksi", response)
+    //   const snapToken = await API.get(`/midtrans/`+ IDTrans)
+
+    // const token = snapToken.data.data.token;
+
+    // window.snap.pay(token, {
+    //   onSuccess: function (result) {
+    //     /* You may add your own implementation here */
+
+    //     console.log(result);
+    //     navigate("/profile");
+    //   },
+    //   onPending: function (result) {
+    //     /* You may add your own implementation here */
+    //     console.log(result);
+    //     navigate("/profile");
+    //   },
+    //   onError: function (result) {
+    //     /* You may add your own implementation here */
+    //     console.log(result);
+    //   },
+    //   onClose: function () {
+    //     /* You may add your own implementation here */
+    //     alert("you closed the popup without finishing the payment");
+    //   },
+    // });
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
+  const formatIDR = new Intl.NumberFormat(undefined, {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0,
+  })
+
+  const [showLogin, setShowLogin] = useState(true)
+  const [showRegister, setShowRegister] = useState(false)
+  const [modalShow, setModalShow] = useState(false)
+
+  //Delete order
+  const [idDelete, setIdDelete] = useState(null)
+  const [confirmDelete, setConfirmDelete] = useState(null)
+
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  const handleDelete = (id) => {
+    setIdDelete(id)
+    handleShow()
+  }
+
   const deleteById = useMutation(async (id) => {
-    try{
+    try {
       const config = {
         method: "DELETE",
         headers: {
           Authorization: "Basic " + localStorage.token,
         },
       }
-      await API.delete(`/order/` + id, config)
+      await API.delete(`/order/${id}`, config)
       refetch()
-      window.location.reload()
     } catch (error) {
       console.log(error)
     }
   })
- 
-  const dataOrder = order?.filter((item)=>{
-    return item.transaction_id === null
-  })
-
-  console.log(dataOrder)
-
-  let resultTotal = dataOrder?.reduce((addition, b) => {
-    return addition + b.price
-  },0);
+  
 
   useEffect(() => {
-    if (confirmDelete){
+    // const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
+
+    // const myMidtransClientKey = "Mid-client-2PsqiscjRulJw8KN";
+    // // const myMidtransClientKey = process.env.REACT_APP_MIDTRANS_CLIENT_KEY;
+
+    // let scriptTag = document.createElement("script");
+    // scriptTag.src = midtransScriptUrl;
+
+    // scriptTag.setAttribute("data-client-key", myMidtransClientKey);
+
+    // document.body.appendChild(scriptTag);
+    // return () => {
+    //   document.body.removeChild(scriptTag);
+    // };
+    if (confirmDelete) {
+      // Close modal delete data
       handleClose()
+      // execute delete data by id function
       deleteById.mutate(idDelete)
       setConfirmDelete(null)
     }
-  }, [confirmDelete])
-
+    
+  }, []);
+ 
 
 return (
     <>
@@ -172,7 +223,7 @@ return (
                       className="d-flex flex-column gap-1 align-items-center"
                     >
                       <p className="color-red fs-6 my-0">
-                        {formatIDR.format(data?.price)}
+                        {formatIDR.format(data?.subtotal)}
                       </p>
                       <img
                         src={trash}
@@ -194,12 +245,7 @@ return (
                   <Col xs={6}>
                     <hr style={{ width: "100%" }} />
                     <p className="color-red fs-6 text-end">
-                    {!!order === false || order.length === 0 ? 0
-                    : formatIDR.format(
-                      order
-                      .map((e) => e.price)
-                      .reduce((a, b) => a+b)
-                    )}</p>
+                    {formatIDR.format(Subtotal)}</p>
                     <p className="color-red fs-6 text-end">{order?.length}</p>
                     <hr style={{ width: "100%" }} />
                   </Col>
@@ -210,12 +256,7 @@ return (
                   </Col>
                   <Col xs={6}>
                     <p className="color-red fs-6 text-end">
-                    {!!order === false || order.length === 0 ? 0
-                    : formatIDR.format(
-                      order
-                      .map((e) => e.price)
-                      .reduce((a, b) => a+b)
-                    )}
+                    {formatIDR.format(Subtotal)}
                     </p>
                   </Col>
                 </Col>
@@ -223,41 +264,46 @@ return (
             </Col>
 
             <Col xs={5} style={{marginTop:"7%"}}>
-              <Form>
-                <Form.Control
+              <Form  onSubmit={(e) => HandlePay.mutate(e)}>
+                <Form.Control onChange={handleOnChange}
                   className="my-3"
+                  name="name"
                   placeholder="Name"
                   style={{
                     border: "1px solid #BD0707",
                     background: "#E0C8C840",
                     lineHeight: "2.5",
                   }} />
-                <Form.Control
+                <Form.Control onChange={handleOnChange}
                   className="my-3"
                   placeholder="Email"
+                  name="email"
                   style={{
                     border: "1px solid #BD0707",
                     background: "#E0C8C840",
                     lineHeight: "2.5",
                   }} />
-                <Form.Control
+                <Form.Control onChange={handleOnChange}
                   className="my-3"
                   placeholder="Phone"
+                  name="phone"
                   style={{
                     border: "1px solid #BD0707",
                     background: "#E0C8C840",
                     lineHeight: "2.5",
                   }} />
-                <Form.Control
+                <Form.Control onChange={handleOnChange}
                   className="my-3"
                   placeholder="Pos Code"
+                  name="postcode"
                   style={{
                     border: "1px solid #BD0707",
                     background: "#E0C8C840",
                     lineHeight: "2.5",
                   }} />
-                <Form.Control
+                <Form.Control onChange={handleOnChange}
                   className="my-3"
+                  name="address"
                   as="textarea"
                   placeholder="Your Address"
                   style={{
@@ -268,8 +314,14 @@ return (
                   }} />
                 <Button
                   className="btn btn-danger btn-main btn-form col-12"
+                  type="submit"
                 >
-                  Pay
+                  Order {!!order === false || order.length === 0 ? 0
+                    : formatIDR.format(
+                      order
+                      .map((e) => e.subtotal)
+                      .reduce((a, b) => a+b)
+                    )}
                 </Button>
               </Form>
             </Col>

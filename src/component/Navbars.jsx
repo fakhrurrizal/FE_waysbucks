@@ -189,6 +189,22 @@ function DropdownAdmin() {
               />{" "}
               Topping List
             </Nav.Link>
+            <Nav.Link
+              href="/Admin"
+              className="mt-4"
+              style={{
+                fontWeight: "600",
+                fontSize: "17px",
+                alignItems: "center",
+              }}
+            >
+              <img
+                alt=""
+                src={AddProduct}
+                style={{ width: "30px", marginRight: "15px" }}
+              />{" "}
+              Transaction
+            </Nav.Link>
           </Popover.Body>
           <hr />
           <Popover.Body>
@@ -235,9 +251,10 @@ function Navs() {
   const [showRegister, setShowRegister] = useState(false)
 
   const { data: order } = useQuery("ordersCache", async () => {
-    const response = await API.get("/orders")
+    const response = await API.get("/orders-id")
     return response.data.data
   })
+
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">

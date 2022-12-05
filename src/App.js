@@ -10,7 +10,7 @@ import HomePage from "./page/Home";
 import Profile from "./page/user/Profile";
 import ProductPage from './page/user/DetailProduct';
 import Cart from './page/user/Cart'
-import transaction from './page/admin/transaction'
+import Admin from './page/admin/transaction'
 
 import { UserContext } from "./Contexts/userContext";
 import { API, setAuthToken } from "./config/api";
@@ -61,7 +61,9 @@ function App() {
   };
 
   useEffect(() => {
+   if(localStorage.token){
     checkUser();
+   }
   }, []);
 
   const PrivateRoute = () => {
@@ -69,7 +71,7 @@ function App() {
   };
 
   const AdminRoute = () => {
-    return state.user.role === "admin" ? <Outlet /> : <Navigate to="/" />
+    return state.user.role === "admin" ? <Outlet /> : <Navigate to="/Admin" />
   };
 
   return (
@@ -83,6 +85,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
 
           <Route path="/" element={<AdminRoute />} >
+            <Route path="/Admin" element={<Admin />}/>
             <Route path="/AddProduct" element={<AddProduct />} />
             <Route path="/AddTopping" element={<AddTopping />} />
           </Route>

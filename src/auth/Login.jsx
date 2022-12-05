@@ -58,7 +58,7 @@ const LoginForm = ({ show, setShow, setShowRegister }) => {
           navigate("/admin");
           window.location.reload()
         }else {
-          navigate("/")
+        
           window.location.reload()
         }
 

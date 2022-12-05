@@ -95,6 +95,8 @@ function AddProduct() {
 
       navigate("/AddProduct")
     } catch (error) {
+
+      
       console.log(error)
     }
   })
