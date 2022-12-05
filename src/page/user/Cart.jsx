@@ -69,33 +69,33 @@ function CartUserPage() {
         config
        
       )
-      navigate("/profile");
+      // navigate("/profile");
       console.log("Transaksi", response)
-    //   const snapToken = await API.get(`/midtrans/`+ IDTrans)
+      const snapToken = await API.get(`/midtrans/`+ IDTrans)
 
-    // const token = snapToken.data.data.token;
+    const token = snapToken.data.data.token;
 
-    // window.snap.pay(token, {
-    //   onSuccess: function (result) {
-    //     /* You may add your own implementation here */
+    window.snap.pay(token, {
+      onSuccess: function (result) {
+        /* You may add your own implementation here */
 
-    //     console.log(result);
-    //     navigate("/profile");
-    //   },
-    //   onPending: function (result) {
-    //     /* You may add your own implementation here */
-    //     console.log(result);
-    //     navigate("/profile");
-    //   },
-    //   onError: function (result) {
-    //     /* You may add your own implementation here */
-    //     console.log(result);
-    //   },
-    //   onClose: function () {
-    //     /* You may add your own implementation here */
-    //     alert("you closed the popup without finishing the payment");
-    //   },
-    // });
+        console.log(result);
+        navigate("/profile");
+      },
+      onPending: function (result) {
+        /* You may add your own implementation here */
+        console.log(result);
+        navigate("/profile");
+      },
+      onError: function (result) {
+        /* You may add your own implementation here */
+        console.log(result);
+      },
+      onClose: function () {
+        /* You may add your own implementation here */
+        alert("you closed the popup without finishing the payment");
+      },
+    });
     } catch (error) {
       console.log(error)
     }
@@ -141,27 +141,27 @@ function CartUserPage() {
   
 
   useEffect(() => {
-    // const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
+    const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
 
-    // const myMidtransClientKey = "Mid-client-2PsqiscjRulJw8KN";
-    // // const myMidtransClientKey = process.env.REACT_APP_MIDTRANS_CLIENT_KEY;
+    const myMidtransClientKey = "Mid-client-2PsqiscjRulJw8KN";
+    // const myMidtransClientKey = process.env.REACT_APP_MIDTRANS_CLIENT_KEY;
 
-    // let scriptTag = document.createElement("script");
-    // scriptTag.src = midtransScriptUrl;
+    let scriptTag = document.createElement("script");
+    scriptTag.src = midtransScriptUrl;
 
-    // scriptTag.setAttribute("data-client-key", myMidtransClientKey);
+    scriptTag.setAttribute("data-client-key", myMidtransClientKey);
 
-    // document.body.appendChild(scriptTag);
-    // return () => {
-    //   document.body.removeChild(scriptTag);
-    // };
-    if (confirmDelete) {
-      // Close modal delete data
-      handleClose()
-      // execute delete data by id function
-      deleteById.mutate(idDelete)
-      setConfirmDelete(null)
-    }
+    document.body.appendChild(scriptTag);
+    return () => {
+      document.body.removeChild(scriptTag);
+    };
+    // if (confirmDelete) {
+    //   // Close modal delete data
+    //   handleClose()
+    //   // execute delete data by id function
+    //   deleteById.mutate(idDelete)
+    //   setConfirmDelete(null)
+    // }
     
   }, []);
  
