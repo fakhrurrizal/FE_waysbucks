@@ -141,20 +141,23 @@ function CartUserPage() {
   
 
   useEffect(() => {
+    //change this to the script source you want to load, for example this is snap.js sandbox env
     const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
-
-    const myMidtransClientKey = "Mid-client-2PsqiscjRulJw8KN";
+    //change this according to your client-key
+    const myMidtransClientKey = "SB-Mid-client-GxZRAIKRV-YgtKJw";
     // const myMidtransClientKey = process.env.REACT_APP_MIDTRANS_CLIENT_KEY;
 
     let scriptTag = document.createElement("script");
     scriptTag.src = midtransScriptUrl;
-
+    // optional if you want to set script attribute
+    // for example snap.js have data-client-key attribute
     scriptTag.setAttribute("data-client-key", myMidtransClientKey);
 
     document.body.appendChild(scriptTag);
     return () => {
-      document.body.removeChild(scriptTag);
+        document.body.removeChild(scriptTag);
     };
+}, []);
     // if (confirmDelete) {
     //   // Close modal delete data
     //   handleClose()
@@ -163,7 +166,7 @@ function CartUserPage() {
     //   setConfirmDelete(null)
     // }
     
-  }, []);
+ 
  
 
 return (
